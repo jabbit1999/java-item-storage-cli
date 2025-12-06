@@ -2,6 +2,7 @@ package com.minijava.service;
 
 import com.minijava.comparator.AscendingPower;
 import com.minijava.dto.ItemDTO;
+import com.minijava.repository.ItemRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +35,7 @@ public class InventoryService {
     for (ItemDTO item : inventory) {
       if (item.getNumber() == itemNumber) return item;
     }
+
     return null;
   }
 
