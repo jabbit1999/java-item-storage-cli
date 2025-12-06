@@ -44,4 +44,10 @@ public class ItemSearchServiceImpl implements com.minijava.service.ItemSearchSer
     }
     return itemRepository.findByName(name);
   }
+
+  @Override
+  public List<ItemDTO> searchItemsByKeyword(String keyword) {
+
+    return itemRepository.findByKeyword(keyword);
+  }
 }

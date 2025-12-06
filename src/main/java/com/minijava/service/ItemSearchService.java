@@ -25,4 +25,7 @@ public interface ItemSearchService {
    */
   List<ItemDTO> findItemsByName(String name);
 
+
+  List<ItemDTO> searchItemsByKeyword(String keyword);
+
 }
