@@ -27,18 +27,18 @@ public class ItemAddServiceImpl implements ItemAddService {
     @Override
     public int itemAdd(String name, String rank, String quality, int power) {
         // 이름 중복 아이템 처리
-        List<ItemDTO> byName = itemRepository.findByName(name);
+        List<ItemDTO> byName = itemRepository.findByName(name); // byName => name이 같은 dto의 묶음
         if (!byName.isEmpty()) return -1;
 
         // 아이템 정상 등록
         int newItemNumber;
         int lastItemNumber = itemRepository.getLastItemNumber();
-        if (lastItemNumber == -1) { //repository에 아이템이 없는 경우 getLastItemNumber는 -1을 반환
-            newItemNumber = 1;
+        if (lastItemNumber == -1) { //repository에 아이템이 없는 경우 getLastItemNumber()는 -1을 반환
+            newItemNumber = 1; //초기값
         } else { //마지막 아이템의 고유번호를 확인한 경우
             newItemNumber = lastItemNumber + 1;
         }
-        itemRepository.save(new ItemDTO(newItemNumber, name, rank, quality, power));
+        itemRepository.addItem(new ItemDTO(newItemNumber, name, rank, quality, power));
         return newItemNumber;
     }
 }
