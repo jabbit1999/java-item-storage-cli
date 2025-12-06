@@ -26,7 +26,6 @@ public class ItemSearchServiceImpl implements com.minijava.service.ItemSearchSer
   public ItemDTO findItemById(Integer id) {
     // 1. 유효성 검사: ID가 null이거나 0 이하인지 확인 (기존 로직)
     if (id == null || id <= 0) {
-      System.out.println("상품 ID는 양수여야 합니다.");
       return null;
     }
 
@@ -35,7 +34,6 @@ public class ItemSearchServiceImpl implements com.minijava.service.ItemSearchSer
 
     // 3. 존재 여부 검사: ID가 양수이지만 결과가 null인지 확인 (추가 로직)
     if (foundItem == null) {
-      System.out.println("@@@ 일치하는 상품 정보가 없습니다. @@@"); // 비어있을 경우 출력 구문
       return null;
     }
 
@@ -49,7 +47,6 @@ public class ItemSearchServiceImpl implements com.minijava.service.ItemSearchSer
 
     // name이 빈 문자열이거나 공백만으로 이루어진 문자열일 경우 빈 리스트 반환
     if (name == null || name.trim().isEmpty()) {
-      System.out.println("검색할 상품 이름을 입력해야 합니다.");
       return List.of(); // 빈 리스트 반환
     }
     return itemRepository.findByName(name);
