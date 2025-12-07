@@ -64,18 +64,8 @@ public abstract class AbstractItemRepository implements ItemRepositoryInterface 
 
   @Override
   public boolean delete(Integer id) {
-    if (id == null) return false;
-
-    // 1. 메모리 리스트에서 아이템 삭제
-    // removeIf : 조건에 맞는 요소를 삭제하고, 삭제 성공 여부를 반환
-    boolean wasRemoved = itemDTOList.removeIf(item -> item.getNumber() == id);
-
-    // 2. 삭제에 성공했을 경우, 즉시 파일에 저장 (추가된 핵심 로직)
-    if (wasRemoved) {
-      saveAll(); // 변경된 메모리(itemDTOList) 상태를 파일에 덮어씁니다.
-    }
-
-    return wasRemoved;
+    // removeIf : 조건(ID 일치)에 맞는 요소를 삭제하고, 삭제됐으면 true 반환
+    return itemDTOList.removeIf(item -> item.getNumber() == id);
   }
 
   @Override
